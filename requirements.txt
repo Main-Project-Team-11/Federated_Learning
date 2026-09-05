@@ -1,0 +1,6 @@
+# Core deep-learning stack (CPU installation is sufficient for this project).
+torch==2.14.0
+torchvision==0.29.0
+
+# Flower federated-learning framework and its Ray simulation dependency.
+flwr[simulation]==1.36.0
