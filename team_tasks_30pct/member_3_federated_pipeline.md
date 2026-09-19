@@ -34,11 +34,14 @@
 ## 2. Interface Contract (What you receive & provide)
 
 - **Receives from Member 1**: 3 client DataLoaders (`loader_c1`, `loader_c2`, `loader_c3`) and 1 global validation DataLoader (`loader_val`).
-- **Receives from Member 2**: `MultimodalNet` model class.
+- **Receives from Member 2**: `MultimodalNet` model class (assembled architecture incorporating Member 2's Vision Transformer / ViT image encoder, fusion module, and Member 4's clinical encoder).
 - **Receives from Member 4**: `train_client_local()` local training routine.
 - **Provides to Member 4**:
   - `federated_training_log.json` containing round-by-round validation accuracy and loss curves.
   - Final aggregated global model weights: `best_global_model.pt`.
+
+> [!NOTE]
+> **Model Backbone & Parameter Serialization**: The global and local `MultimodalNet` instances incorporate Member 2's Vision Transformer (ViT) backbone. Parameter updates are serialized and aggregated across all ViT, clinical, and fusion layers using PyTorch `state_dict()` in `federated_averaging()`.
 
 ---
 

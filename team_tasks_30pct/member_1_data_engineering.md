@@ -34,12 +34,15 @@
 Your PyTorch DataLoader must yield batches structured as a dictionary:
 ```python
 batch = {
-    "image": torch.Tensor,     # Shape: [B, 1, 224, 224] or [B, 3, 224, 224] (float32, normalized)
+    "image": torch.Tensor,     # Shape: [B, 3, 224, 224] (float32, normalized for Member 2's ViT encoder)
     "clinical": torch.Tensor,  # Shape: [B, num_features] (float32, e.g. Age, Sex, View)
     "label": torch.Tensor,     # Shape: [B, 1] (float32, 0.0 or 1.0)
     "patient_id": list         # List of strings [B]
 }
 ```
+
+> [!NOTE]
+> **Vision Backbone Compatibility**: The image tensor `batch["image"]` of shape `[B, 3, 224, 224]` directly feeds into Member 2's Vision Transformer (ViT) image encoder (which decomposes each image into non-overlapping patches and linearly projects them into visual tokens).
 
 ---
 
@@ -122,7 +125,7 @@ class MultimodalChestDataset(Dataset):
         self.image_col = image_col
         self.transform = transform or transforms.Compose([
             transforms.Resize((224, 224)),
-            transforms.Grayscale(num_output_channels=3),  # 3-channel for standard CNN backbones
+            transforms.Grayscale(num_output_channels=3),  # 3-channel for standard vision backbones (e.g., ViT)
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])

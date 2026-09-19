@@ -42,8 +42,8 @@ The project is divided across our 4 members with zero overlapping confusion and 
              │
              ▼
   [MEMBER 2: Vision & Multimodal Architecture Lead]
-    ├── Image Encoder (CNN backbone: ResNet-18 or Custom CNN)
-    ├── Multimodal Fusion Layer (Concatenation + Projection)
+    ├── Image Encoder (Vision Transformer / ViT backbone per Khader et al., 2023)
+    ├── Multimodal Fusion Layer (ViT visual tokens + Clinical latent tokens)
     ├── Binary Classification Head (Linear logit output: Pneumonia vs Normal)
     └── Model Parameter Serialization (state_dict get/set)
              │
@@ -117,7 +117,7 @@ model.load_state_dict(global_weights)
 | Step | Responsible | Target Deliverable | Dependency |
 |---|---|---|---|
 | **Phase 1** | Member 1 | Clean CSVs, Data Loaders, Validation Report | Datasets downloaded |
-| **Phase 2** | Member 2 & Member 4 | Member 2: Image Encoder + Fusion + Head; Member 4: Clinical Encoder + Local Trainer | Synthetic or Member 1 dummy batch |
+| **Phase 2** | Member 2 & Member 4 | Member 2: ViT Image Encoder + Fusion + Head; Member 4: Clinical Encoder + Local Trainer | Synthetic or Member 1 dummy batch |
 | **Phase 3** | Member 4 | Centralized baseline training working on pooled data | Member 1 loaders + Member 2 & 4 model |
 | **Phase 4** | Member 3 | 3-Client FedAvg simulation loop running 5 rounds | Member 1 partitions + Member 4 training loop |
 | **Phase 5** | Member 4 | Comparative plots (FedAvg vs Centralized) & report | Member 3 FL logs + Member 4 baseline logs |
