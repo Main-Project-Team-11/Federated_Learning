@@ -18,7 +18,7 @@ Our agreed 30% goal is:
 3. **Multimodal Modality**:
    Chest X-ray image + paired clinical tabular features (e.g. age, gender, view position, vitals) mapped to binary classification:
    - `Class 1`: **Pneumonia**
-   - `Class 0`: **Normal** / **No Finding**
+   - `Class 0`: **Non-Pneumonia** (No Finding or other non-pneumonia pathologies)
 
 ---
 
@@ -44,7 +44,7 @@ The project is divided across our 4 members with zero overlapping confusion and 
   [MEMBER 2: Vision & Multimodal Architecture Lead]
     ├── Image Encoder (Vision Transformer / ViT backbone per Khader et al., 2023)
     ├── Multimodal Fusion Layer (ViT visual tokens + Clinical latent tokens)
-    ├── Binary Classification Head (Linear logit output: Pneumonia vs Normal)
+    ├── Binary Classification Head (Linear logit output: Pneumonia vs Non-Pneumonia)
     └── Model Parameter Serialization (state_dict get/set)
              │
              ├── Passes Image Encoder, Fusion & Classification Head

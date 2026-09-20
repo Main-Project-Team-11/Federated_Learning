@@ -39,7 +39,7 @@ batch = {
     "label": torch.Tensor,     # Shape: [B, 1] (float32, 0.0 or 1.0)
     "patient_id": list         # List of strings [B]
 }
-```
+```t
 
 > [!NOTE]
 > **Vision Backbone Compatibility**: The image tensor `batch["image"]` of shape `[B, 3, 224, 224]` directly feeds into Member 2's Vision Transformer (ViT) image encoder (which decomposes each image into non-overlapping patches and linearly projects them into visual tokens).

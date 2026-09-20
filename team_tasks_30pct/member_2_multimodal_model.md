@@ -44,7 +44,9 @@ Per the selected base paper by **Khader et al. (2023)**, the **image encoder is 
 
 ### 3. Binary Classification Head
 - Final projection layer (Multi-Layer Perceptron / linear head) mapping fused multimodal features to a single unnormalized logit ($1$ output neuron).
-- Binary objective: Class 1 = `Pneumonia`, Class 0 = `Normal`.
+- Binary objective:
+  - Class 1 = `Pneumonia`
+  - Class 0 = `Non-Pneumonia` (negative class can contain other non-pneumonia pathologies or no finding)
 - Forward signature outputs logits suitable for `nn.BCEWithLogitsLoss`.
 
 ### 4. Integration with Member 4
@@ -131,7 +133,7 @@ class FusionClassifier(nn.Module):
             nn.ReLU(),
             nn.Dropout(p=dropout_rate)
         )
-        # Binary classification output: 1 logit (Pneumonia vs Normal)
+        # Binary classification output: 1 logit (Pneumonia vs Non-Pneumonia)
         self.head = nn.Linear(hidden_dim, 1)
 
     def forward(self, h_img, h_clin):
