@@ -20,7 +20,7 @@ The proposed model will combine:
 The output classes are:
 
 - Pneumonia
-- Normal
+- Non-Pneumonia
 
 At the 30% milestone, the priority is to establish a stable baseline. Advanced privacy, deployment, monitoring, and explainability features will be developed later.
 
@@ -51,7 +51,7 @@ The system is an academic research prototype and is not intended to replace doct
 ## 4. Project Objectives
 
 1. Combine Chest X-ray images with available clinical/tabular information.
-2. Build a multimodal model for Pneumonia-versus-Normal classification.
+2. Build a multimodal model for Pneumonia-versus-Non Pneumonia classification.
 3. Divide the data into three to five simulated hospital clients.
 4. Create Non-IID client partitions to represent heterogeneous hospital data.
 5. Implement local training at each client.
@@ -73,7 +73,7 @@ The 30% implementation is focused on:
 - Image and tabular-data preprocessing
 - Multimodal model construction
 - Creation of simulated hospital clients
-- Non-IID data partitioning
+- IID data partitioning
 - Local client training
 - Federated server setup
 - FedAvg aggregation
