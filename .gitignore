@@ -1,0 +1,119 @@
+# ============================================================
+# .gitignore — Federated Learning Project (Team 11)
+# ============================================================
+
+# ----------------------------
+# Python
+# ----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ----------------------------
+# Virtual Environments
+# ----------------------------
+.venv/
+venv/
+env/
+ENV/
+.env
+*.env
+
+# ----------------------------
+# Jupyter Notebooks
+# ----------------------------
+.ipynb_checkpoints/
+*.ipynb
+
+# ----------------------------
+# Dataset & Raw Data (large files — do NOT push)
+# ----------------------------
+data/raw/
+data/processed/
+data/CheXpert*/
+data/NIH*/
+data/chexpert*/
+data/nih*/
+*.csv
+*.parquet
+*.hdf5
+*.h5
+*.sqlite
+*.db
+*.feather
+
+# ----------------------------
+# Model Weights & Checkpoints
+# ----------------------------
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+checkpoints/
+saved_models/
+runs/
+outputs/
+
+# ----------------------------
+# Images & Medical Data
+# ----------------------------
+*.jpg
+*.jpeg
+*.png
+*.dcm
+*.nii
+*.nii.gz
+data/images/
+data/exports/
+
+# ----------------------------
+# Logs & Monitoring
+# ----------------------------
+logs/
+*.log
+*.out
+tensorboard_logs/
+wandb/
+mlruns/
+
+# ----------------------------
+# OS & Editor
+# ----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ----------------------------
+# Temporary / Scratch Files
+# ----------------------------
+tmp/
+temp/
+scratch/
+*.tmp
+*.bak
+
+# ----------------------------
+# PowerShell
+# ----------------------------
+*.ps1.bak
+
+# ----------------------------
+# Git
+# ----------------------------
+*.orig
+*.rej
