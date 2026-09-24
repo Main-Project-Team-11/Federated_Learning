@@ -19,6 +19,7 @@ Contract:
   }
 """
 import os
+import pathlib
 import torch
 from torch.utils.data import Dataset, DataLoader
 from PIL import Image
@@ -30,7 +31,17 @@ import numpy as np
 TRAIN_AGE_MEAN = 47.70
 TRAIN_AGE_STD = 16.80
 
-DEFAULT_DATA_DIR = r"r:\VSCODE\Main_Project\data_prep"
+# Resolve data directory:
+# 1. Use FEDMED_DATA_DIR environment variable if set (recommended for all team members).
+# 2. Fall back to a path relative to this file so it works on any machine
+#    without code changes, as long as the project structure is preserved.
+#
+# How to set the env variable (set once, never touch this file again):
+#   Windows PowerShell : $env:FEDMED_DATA_DIR = "C:\your\path\to\data_prep"
+#   Windows CMD        : set FEDMED_DATA_DIR=C:\your\path\to\data_prep
+#   Linux / macOS      : export FEDMED_DATA_DIR=/your/path/to/data_prep
+_FALLBACK_DATA_DIR = str(pathlib.Path(__file__).resolve().parent.parent / "data_prep")
+DEFAULT_DATA_DIR = os.environ.get("FEDMED_DATA_DIR", _FALLBACK_DATA_DIR)
 
 
 def get_default_image_transform():
@@ -147,3 +158,5 @@ def get_test_loader(batch_size: int = 32, shuffle: bool = False, num_workers: in
     df = pd.read_parquet(file_path) if file_path.endswith(".parquet") else pd.read_csv(file_path)
     dataset = MultimodalDataset(df)
     return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
+
+
