@@ -96,9 +96,7 @@ class MultimodalDataset(Dataset):
                 image = pil_img.convert("RGB")
                 image_tensor = self.transform(image)
         else:
-            # Fallback for un-extracted test scans: create deterministic zero tensor with warning
-            # to guarantee pipeline robustness during development
-            image_tensor = torch.zeros(3, 224, 224, dtype=torch.float32)
+            raise FileNotFoundError(f"Image file not found for sample: {img_path}")
 
         # 2. Clinical feature tensor [2]
         clinical_tensor = torch.tensor(self.clinical_features[idx], dtype=torch.float32)
