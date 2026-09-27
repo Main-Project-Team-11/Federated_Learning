@@ -7,7 +7,7 @@ class ClinicalEncoder(nn.Module):
 
     def __init__(self, input_dim=2, hidden_dim=32, output_dim=64):
         super().__init__()
-        self.network = nn.Sequential(
+        self.net = nn.Sequential(
             nn.Linear(input_dim, hidden_dim),
             nn.BatchNorm1d(hidden_dim),
             nn.ReLU(),
@@ -18,4 +18,4 @@ class ClinicalEncoder(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Return clinical embeddings with shape ``[batch_size, output_dim]``."""
-        return self.network(x)
+        return self.net(x)
