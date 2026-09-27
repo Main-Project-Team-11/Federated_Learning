@@ -43,6 +43,7 @@ FedAvg compatibility:
 import torch
 import torch.nn as nn
 from torchvision import models as tv_models
+from models.clinical_encoder import ClinicalEncoder
 
 
 # ---------------------------------------------------------------------------
@@ -296,13 +297,13 @@ class MultimodalNet(nn.Module):
             pretrained=pretrained,
         )
 
-        # Clinical pathway (Member 4 or fallback)
+        # Clinical pathway (Member 4)
         if clinical_encoder_module is not None:
             self.clinical_encoder = clinical_encoder_module
         else:
-            self.clinical_encoder = _DefaultClinicalEncoder(
-                num_features=num_clinical_features,
-                embed_dim=clin_embed_dim,
+            self.clinical_encoder = ClinicalEncoder(
+                input_dim=num_clinical_features,
+                output_dim=clin_embed_dim,
             )
 
         # Fusion & classification (Member 2)

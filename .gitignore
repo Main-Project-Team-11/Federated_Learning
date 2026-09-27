@@ -43,6 +43,7 @@ data/CheXpert*/
 data/NIH*/
 data/chexpert*/
 data/nih*/
+data_prep/
 *.csv
 *.parquet
 *.hdf5
@@ -50,6 +51,7 @@ data/nih*/
 *.sqlite
 *.db
 *.feather
+*.zip
 
 # ----------------------------
 # Model Weights & Checkpoints
@@ -85,6 +87,12 @@ logs/
 tensorboard_logs/
 wandb/
 mlruns/
+
+# ----------------------------
+# Federated Learning Outputs (runtime artifacts — do NOT push)
+# ----------------------------
+federated_training_log.json
+best_global_model.pt
 
 # ----------------------------
 # OS & Editor
